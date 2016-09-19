@@ -57,7 +57,7 @@ displayD(D);
 
 rng(0);
 % numNeighbors = 100;
-numNeighbors = ceil(numFrame / 4);
+numNeighbors = ceil(0.15 * numFrame);
 [label,W] = ncutD(D, 4, numNeighbors);
 toc
 
@@ -82,7 +82,7 @@ end
 % accuracy
 label = v(ind,label);
 
-displayLabel(label, gt, accuracy, nPCA);
+displayLabel(label, gt, accuracy);
 
 fprintf('identification accuracy is %f\n', accuracy);
 
@@ -113,16 +113,16 @@ ylabel('group label');
 if nargin < 3
     title('Switched system identification with JBLD');
 elseif nargin == 3
-    title(sprintf('Switched system identification with JBLD, Accuracy = %2.2f%%',accuracy * 100));
+    title(sprintf('Switched system identification with JBLD Graphcut, Accuracy = %2.2f%%',accuracy * 100));
 elseif nargin == 4
-    title(sprintf('Switched system identification with JBLD, Accuracy = %2.2f%% (%d PCA component)',accuracy * 100, nPCA));
+    title(sprintf('Switched system identification with JBLD Graphcut, Accuracy = %2.2f%% (%d PCA component)',accuracy * 100, nPCA));
 else
     
 end
 
 hTitle = get(gca,'Title');
 P = get(hTitle,'Position');
-set(hTitle,'Position',[P(1), P(2)+0.1, P(3)]);
+set(hTitle,'Position',[P(1), P(2)+0.05, P(3)]);
 
 legend('identified group', 'ground truth group');
 

@@ -26,10 +26,10 @@ var.nSys = 3; % number of systems
 var.den_ord = [2 2 2];
 var.num_ord = [2 2 2];
 var.numSample = 100; % number of data samples
-var.numDim = 3;
+var.numDim = 1;
 var.switchInd = [11 29 41 59 73 89];
 var.hasInput = true;
-var.noiseLevel = 0.0;
+var.noiseLevel = 0.2;
 
 % rng(17);
 % [y, u, gt, sys_par] = switchSysDataGen(var);
@@ -39,7 +39,7 @@ rng(22);
 [y, u, gt, a, b] = switchSysDataGen4(var);
 plot(y');
 
-epsilon = 0.001;
+epsilon = 0.3;
 norm_used = inf;
 yOrder = 2;
 uOrder = 2;
@@ -75,6 +75,8 @@ accuracy = nnz(label==gt) / length(gt);
 fprintf('identification accuracy is %f\n', accuracy);
 
 displayRes(label, gt, accuracy);
+
+p = p(:, v(ind, :));
 
 end
 

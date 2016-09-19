@@ -48,6 +48,7 @@ while nnz(ind) ~= 0
     obj = 0;
     iter = 0;
     while abs(obj_pre - obj) > 1e-3 && iter < maxIter
+        fprintf('iter = %d ...\n', iter);
         cvx_begin
         cvx_quiet true
         cvx_solver mosek

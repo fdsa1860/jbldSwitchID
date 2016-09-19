@@ -13,23 +13,24 @@ addpath(genpath('metric'));
 data3 = bsxfun(@minus, data, mean(data,2));
 [U,S,V] = svd(data3);
 s = diag(S); cs = cumsum(s) / sum(s); 
-% nPCA = nnz(cs<0.9)+1;
-nPCA = 1;
+nPCA = nnz(cs<0.9)+1;
+% nPCA = 3;
 data3 = U(:,1:nPCA)' * data3;
-y = data3;
+y = diff(data3,[],2);
+ymax = max(abs(y), [], 2);
+y = bsxfun(@rdivide, y, ymax);
+plot(y');
 
-plot(y);
-
-epsilon = 0.3;
+epsilon = 0.1;
 norm_used = inf;
 yOrder = 2;
 uOrder = 0;
 
 tic
-[label, p] = minNumSubmodels(y, [], yOrder, uOrder, epsilon);
+[label, p] = multi_minNumSubmodels(y, [], yOrder, uOrder, epsilon);
 toc
 
-label = [label(1)*ones(1,yOrder), label];
+label = [label(1)*ones(1,yOrder+1), label];
 
 displayRes(label);
 
