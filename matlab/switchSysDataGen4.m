@@ -1,6 +1,6 @@
 % switch system data generation
 
-function [y, u, gt, a, b] = switchSysDataGen4(opt)
+function [y, u, gt, a, b, e] = switchSysDataGen4(opt)
 
 %% Data generation
 
@@ -57,7 +57,8 @@ else
 end
 
 % e = noiseLevel * (2*rand(size(y))-1);
-e = noiseLevel * randn(size(y));
+e = noiseLevel * max(abs(y)) * randn(size(y));
+% e = noiseLevel * max(abs(y)) * rand(size(y));
 
 rng(0);
 i = 1;

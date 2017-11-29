@@ -1,0 +1,31 @@
+This is the COFSR Matlab toolbox which provides a
+Continuous Optimization Framework for Switched Regression 
+(and hybrid system identification)
+
+written by F. Lauer.
+
+* To install the toolbox, just add its directory and all sub-directories to the PATH, 
+or run 
+
+setup.m
+
+* Then type 'help cofsr' to see how to use the main function. 
+
+* A small demo program is provided in 'example.m'
+
+
+* References: the toolbox implements the method described in 
+
+F. Lauer, R. Vidal, G. Bloch, A continuous optimization framework for hybrid system identification,
+Automatica, 47(3):608-613, 2011.
+
+For your convenience, this toolbox also includes the code by Huyer and Neumaier for 
+the MCS algorithm as described in 
+
+W. Huyer and A. Neumaier, Global optimization by multilevel coordinate search, 
+J. Global Optimization 14 (1999), 331-355. 
+
+(see http://www.mat.univie.ac.at/~neum/software/mcs/ for more details about this code)
+
+Please consdier citing these two references when using the software for academic purposes. 
+

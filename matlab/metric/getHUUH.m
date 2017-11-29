@@ -1,5 +1,6 @@
 
 function [HUUH, Hty, Htu] = getHUUH(ty, tu, opt)
+% function [HUUH, H] = getHUUH(ty, tu, opt)
 
 if ~exist('opt','var')
     opt.H_structure = 'HHt';
@@ -8,6 +9,7 @@ end
 if nargout > 1
     Hty = cell(1,length(ty));
     Htu = cell(1,length(tu));
+%     H = cell(1, length(ty));
 end
 
 HUUH = cell(1,length(ty));
@@ -35,6 +37,8 @@ for i=1:length(ty)
 %         HHt = HUp * HUp';
         Hyu = [Hy; Hu];
         HHt = Hyu * Hyu';
+%         Huy = [Hu; Hy];
+%         HHt = Huy * Huy';
     end
     HHt = HHt / norm(HHt,'fro');
     if strcmp(opt.metric,'JBLD') || strcmp(opt.metric,'JBLD_denoise') ...
@@ -50,6 +54,7 @@ for i=1:length(ty)
     if nargout > 1
         Hty{i} = Hy;
         Htu{i} = Hu;
+%         H{i} = Huy;
     end
 end
 
